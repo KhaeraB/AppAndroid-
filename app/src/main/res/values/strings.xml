@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">List</string>
+    <string name="HelloYou">Hello %1$s</string>
+</resources>
