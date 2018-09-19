@@ -1,8 +1,11 @@
 package com.kb.list;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class User {
+public class User implements Parcelable{
     private String firstName;
     private String lastName;
     private String age;
@@ -12,6 +15,24 @@ public class User {
         this.lastName = lastName;
         this.age= age;
     }
+
+    protected User(Parcel in) {
+        firstName = in.readString();
+        lastName = in.readString();
+        age = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getFirstName() {
         return firstName;
@@ -35,5 +56,17 @@ public class User {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(firstName);
+        parcel.writeString(lastName);
+        parcel.writeString(age);
     }
 }

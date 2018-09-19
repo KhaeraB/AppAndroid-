@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 
 public class LoginActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener{
-    public static final String FIRSTNAME = "com.kb.list.FIRSTNAME";
-    public static final String LASTNAME = "com.kb.list.LASTNAME";
-    public static final String AGE = "com.kb.list.AGE" ;
+
+    public static final String USER = "com.kb.list.USER" ;
     private EditText firstName;
     private EditText lastName;
     private SeekBar mySeekbar;
@@ -39,9 +38,7 @@ public class LoginActivity extends AppCompatActivity implements SeekBar.OnSeekBa
     @Override
     public void onClick(View view){
         Intent intent = new Intent(this, DashboardActivity.class);
-        intent.putExtra(FIRSTNAME, firstName.getText().toString());
-        intent.putExtra(LASTNAME, lastName.getText().toString());
-        intent.putExtra(AGE, age.getText().toString());
+        intent.putExtra(USER, new User(firstName.getText().toString(), lastName.getText().toString(),age.getText().toString()));
         startActivity(intent);
     }
 
